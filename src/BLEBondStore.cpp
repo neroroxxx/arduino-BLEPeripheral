@@ -18,7 +18,7 @@
 #include "BLEBondStore.h"
 
 BLEBondStore::BLEBondStore(int offset)
-#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__)
+#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
   : _offset(offset)
 #elif defined(NRF51) || defined(NRF52) || defined(__RFduino__)
   : _flashPageStartAddress((uint32_t *)(NRF_FICR->CODEPAGESIZE * (NRF_FICR->CODESIZE - 1 - (uint32_t)offset)))
@@ -27,7 +27,7 @@ BLEBondStore::BLEBondStore(int offset)
 }
 
 bool BLEBondStore::hasData() {
-#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__)
+#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
   return (eeprom_read_byte((unsigned char *)this->_offset) == 0x01);
 #elif defined(NRF51) || defined(NRF52) || defined(__RFduino__)
   return (*this->_flashPageStartAddress != 0xFFFFFFFF);
@@ -37,7 +37,7 @@ bool BLEBondStore::hasData() {
 }
 
 void BLEBondStore::clearData() {
-#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__)
+#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
   eeprom_write_byte((unsigned char *)this->_offset, 0x00);
 #elif defined(NRF51) || defined(NRF52)
   int32_t pageNo = (uint32_t)_flashPageStartAddress / NRF_FICR->CODEPAGESIZE;
@@ -66,7 +66,7 @@ void BLEBondStore::clearData() {
 }
 
 void BLEBondStore::putData(const unsigned char* data, unsigned int offset, unsigned int length) {
-#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__)
+#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
   eeprom_write_byte((unsigned char *)this->_offset, 0x01);
 
   for (unsigned int i = 0; i < length; i++) {
@@ -107,7 +107,7 @@ void BLEBondStore::putData(const unsigned char* data, unsigned int offset, unsig
 }
 
 void BLEBondStore::getData(unsigned char* data, unsigned int offset, unsigned int length) {
-#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__)
+#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
   for (unsigned int i = 0; i < length; i++) {
     data[i] = eeprom_read_byte((unsigned char *)this->_offset + offset + i + 1);
   }

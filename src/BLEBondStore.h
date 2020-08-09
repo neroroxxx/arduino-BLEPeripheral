@@ -12,7 +12,7 @@ class BLEBondStore
     void getData(unsigned char* data, unsigned int offset, unsigned int length);
 
   private:
-#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__)
+#if defined(__AVR__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__)  || defined(__MK64FX512__) || defined(__MK66FX1M0__) || defined(__IMXRT1062__)
     int             _offset;
 #elif defined(NRF51)|| defined(NRF52) || defined(__RFduino__)
     uint32_t*       _flashPageStartAddress;

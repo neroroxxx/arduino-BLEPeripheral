@@ -106,8 +106,7 @@ bool BLECharacteristic::written() {
   return written;
 }
 
-void BLECharacteristic::setValue(BLECentral& central, const unsigned char value[], unsigned char length) {
-  //https://github.com/sandeepmistry/arduino-BLEPeripheral/pull/174
+void BLECharacteristic::setValue(BLECentral& central, const unsigned char value[], unsigned char length){
   if(_properties & BLEWriteWithoutResponse){
     this->_valueLength = min(length, this->_valueSize);
 		memcpy(this->_value, value, this->_valueLength);

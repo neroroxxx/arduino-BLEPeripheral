@@ -18,7 +18,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 #ifndef PLATFORM_H__
 #define PLATFORM_H__
 
@@ -27,7 +26,7 @@
 */
 
 //Board dependent defines
-#if defined (__AVR__) || defined(__SAM3X8E__) || defined(__SAMD21G18A__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
+#if defined (__AVR__) || defined(__SAM3X8E__) || defined(__SAMD21G18A__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__) || defined(__MK64FX512__) || defined(__MK66FX1M0__) || defined(__IMXRT1062__)
     //For Arduino this AVR specific library has to be used for reading from Flash memory
     #include <avr/pgmspace.h>
     #include "Arduino.h"
